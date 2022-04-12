@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, StatusBar, Text, TextInput, View} from "react-native";
+import {Button, StyleSheet, StatusBar, Text, TextInput, View} from "react-native";
 
 interface AppProps {
   nome: string,
@@ -19,6 +19,11 @@ export default class App extends React.Component {
   mudouMensagem = (msg:string) => {
     this.setState({nome:msg})
   }
+
+  clicouBotao = (_:any) =>{
+    const {nome} = this.state
+    alert(nome)
+  }
   render() {
     return (
       <>
@@ -27,6 +32,11 @@ export default class App extends React.Component {
           onChangeText={this.mudouMensagem} 
           style={styles.input}></TextInput>
           <Text style={styles.text}>{this.state.nome}</Text>
+          <Button
+          title='Clique-me'
+          color='#f00'
+          onPress={this.clicouBotao}
+          />
           <StatusBar />
         </View>
       </>
