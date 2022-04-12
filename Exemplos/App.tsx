@@ -1,14 +1,18 @@
 import React from "react";
 import { StatusBar ,Text , View, TextInput } from "react-native";
 
+interface AppProps{
+  nome:string
+}
 
 export default class App extends React.Component{
   
-  
+  state:AppProps
+
   constructor(props:any){
     super(props)
     this.state={
-      nome:'leandro'
+      nome:'teste'
     }
   }
 
@@ -17,7 +21,7 @@ export default class App extends React.Component{
       <>
         <View style={{padding:16}}>
             <TextInput
-              autoFocus
+              keyboardType='numeric'
               placeholder="informe seu nome..."
               style={{
                 borderColor:'black',
