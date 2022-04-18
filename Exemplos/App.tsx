@@ -1,9 +1,10 @@
 import React from "react";
-import {Button, StyleSheet, StatusBar, Text, TextInput, View} from "react-native";
+import {Button, StyleSheet, StatusBar, TextInput, View, Alert} from "react-native";
 
 interface AppProps {
-  nome: string,
-  idade?: number,
+  height:string,
+  weight:string,
+  result:number,
 }
 
 export default class App extends React.Component {
@@ -11,30 +12,45 @@ export default class App extends React.Component {
   constructor(props: any) {
     super(props)
     this.state = {
-      nome: '',
-      idade: 12,
+      height:"",
+      weight:"",
+      result:0,
     }
   }
 
-  mudouMensagem = (msg:string) => {
-    this.setState({nome:msg})
-  }
+  clicouBotao = () =>{
+    const heightCalc:number = Number(this.state.height)
+    const weightCalc:number = Number(this.state.weight)
 
-  clicouBotao = (_:any) =>{
-    const {nome} = this.state
-    alert(nome)
+    const result = weightCalc / (heightCalc**2)
+    
+    if(result < 18.5){
+      alert("Você está abaixo do peso!! seu IMC: " + result)
+    }else if(result < 25){
+      alert("Você está no peso ideal!! seu IMC: " +  result)
+    }else if(result < 30){
+      alert("Você está acima do peso!! seu IMC: " + result)
+    }else if(result >= 30){
+      alert("Você está obeso !! seu IMC: " +  result)
+    }
   }
   render() {
     return (
       <>
         <View style={styles.container}>
           <TextInput
-          onChangeText={this.mudouMensagem} 
-          style={styles.input}></TextInput>
-          <Text style={styles.text}>{this.state.nome}</Text>
+          placeholder="Peso"
+          onChangeText={weight => this.setState({weight})} 
+          keyboardType='numeric'
+          style={styles.input}/>
+          <TextInput
+          placeholder="Altura"
+          onChangeText={height => this.setState({height})}
+          keyboardType='numeric'
+          style={styles.input}/>
           <Button
           title='Clique-me'
-          color='#f00'
+          color='blue'
           onPress={this.clicouBotao}
           />
           <StatusBar />
@@ -51,9 +67,10 @@ const styles = StyleSheet.create({
   input:{
     borderColor:'gray',
     borderWidth:0.5,
-    fontSize:28,
+    fontSize:20,
     paddingHorizontal:5,
     marginBottom:40
+    
   },
   text:{
     textAlign:'center',
