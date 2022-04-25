@@ -4,13 +4,14 @@ import { StyleSheet, Text, View, Image, ImageResizeMode, Button, ImageBackground
 
 interface StateProps {
   resizeMode: ImageResizeMode | undefined;
-  isEnable:boolean
+  isEnable:boolean;
+
 }
 
 export default class App extends React.Component {
   state: StateProps = {
     resizeMode: 'repeat',
-    isEnable:true
+    isEnable:false
   };
 
   render() {
