@@ -8,7 +8,7 @@ export default function App() {
       <ImageBackground
         style={styles.imageContainer}
         imageStyle={styles.image}
-        source={getImage('Snow')}
+        source={getImage('Heavy Rain')}
       >
         <View style={styles.detailsContainer}>
         <Text style={[styles.largeText, styles.textStyle]}>San Francisco</Text>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     flex:1,
     justifyContent:'center',
     paddingHorizontal:20,
-    backgroundColor:'rgba(0,0,0,0.3)'
+    backgroundColor:'rgba(0,0,0,0.2)'
   },
   image: {
     flex: 1,
