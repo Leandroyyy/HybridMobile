@@ -1,8 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, TextInput, View, ImageBackground } from 'react-native';
 import getImage from './utils/ImagesForWeather';
+import {SearchInput} from './components/SearchInput'
+import React from 'react';
 
-export default function App() {
+export default class App extends React.Component {
+  state={
+    location: ''
+  }
+
+  componentDidMount(){
+    this.handleUpdateSubmit('San Francisco')
+  }
+
+  handleUpdateSubmit = (city:string) => {
+    this.setState({location:city})
+  }
+
+  render(){
+    const {location} = this.state
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -11,19 +27,19 @@ export default function App() {
         source={getImage('Heavy Rain')}
       >
         <View style={styles.detailsContainer}>
-        <Text style={[styles.largeText, styles.textStyle]}>San Francisco</Text>
+        <Text style={[styles.largeText, styles.textStyle]}>{location}</Text>
         <Text style={[styles.smallText, styles.textStyle]}>Light Cloud</Text>
         <Text style={[styles.largeText , styles.textStyle]}>24°</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Search any city"
-          placeholderTextColor="white"
+        <SearchInput 
+        placeholder="Location"
+        onSubmit={this.handleUpdateSubmit}
         />
         </View>
       </ImageBackground>
       <StatusBar style="auto" />
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({
@@ -55,14 +71,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white'
   },
-  input: {
-    backgroundColor: '#666',
-    color: 'white',
-    fontSize: 30,
-    width: 300,
-    marginTop: 30,
-    marginHorizontal: 20,
-    paddingHorizontal: 10,
-    alignSelf: 'center'
-  }
 });
