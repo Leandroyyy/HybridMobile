@@ -3,6 +3,12 @@ import { StyleSheet, Text, TextInput, View, ImageBackground } from 'react-native
 import getImage from './utils/ImagesForWeather';
 import {SearchInput} from './components/SearchInput'
 import React from 'react';
+import axios from 'axios'
+
+
+const api = axios.create({
+  baseURL:'https://www.metaweather.com/api/'
+})
 
 export default class App extends React.Component {
   state={
@@ -18,7 +24,9 @@ export default class App extends React.Component {
   }
 
   render(){
+
     const {location} = this.state
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -29,7 +37,7 @@ export default class App extends React.Component {
         <View style={styles.detailsContainer}>
         <Text style={[styles.largeText, styles.textStyle]}>{location}</Text>
         <Text style={[styles.smallText, styles.textStyle]}>Light Cloud</Text>
-        <Text style={[styles.largeText , styles.textStyle]}>24°</Text>
+        <Text style={[styles.largeText, styles.textStyle]}>24°</Text>
         <SearchInput 
         placeholder="Location"
         onSubmit={this.handleUpdateSubmit}
