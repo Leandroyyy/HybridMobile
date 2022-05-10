@@ -5,6 +5,7 @@ import {
     View,
     TextInput
 } from 'react-native'
+import PropTypes from 'prop-types'
 
 interface SearchInputProps{
     placeholder:string
@@ -15,7 +16,7 @@ interface StateProps{
     text:string
 }
 
-export class SearchInput extends React.Component<SearchInputProps>{
+export class SearchInput extends React.Component<SearchInputProps, any>{
 
     state:StateProps;
 
@@ -66,3 +67,13 @@ const styles = StyleSheet.create({
 
     }
 })
+
+
+SearchInput.propTypes = {
+    onSubmit : PropTypes.func.isRequired;
+    placeholder: PropTypes.string
+}
+
+SearchInput.defaultProps = {
+    placeholder: '',
+}

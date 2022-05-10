@@ -4,6 +4,7 @@ import getImage from './utils/ImagesForWeather';
 import { SearchInput } from './components/SearchInput'
 import React from 'react';
 import { fetchLocationId, fetchWeather } from './utils/api';
+import PropTypes from 'prop-types'
 
 export default class App extends React.Component {
   state = {
